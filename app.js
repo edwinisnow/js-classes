@@ -28,18 +28,26 @@ console.log(civic.carStats());
 console.log(Car.totalDoors(cx5, civic));
 // extends
 class SUV extends Car {
-  constructor(doors, engine, color, brand, carStats) {
+  constructor(doors, engine, color, carStats) {
     super(doors, engine, color, carStats);
-    this.brand = brand;
+    // private property
+    this._brand = '';
     // default properties, no need to pass in
     this.wheels = 4;
     this.ac = true;
+  }
+  get getBrand() {
+    return this._brand;
+  }
+  set setBrand(brand) {
+    this._brand = brand;
   }
   myBrand() {
     return console.log(`This SUV is a ${this.brand}`);
   }
 }
-const suv = new SUV(4, 'V8', 'Grey', 'mazda');
+const suv = new SUV(4, 'V8', 'Grey');
 console.log(suv);
 console.log(suv.carStats());
-console.log(suv.myBrand());
+suv.setBrand = 'mazda';
+console.log(suv.getBrand);
