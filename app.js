@@ -1,3 +1,15 @@
+let mixin = {
+  madeIn() {
+    console.log(`This car was made this year`);
+  },
+};
+
+let carMixin = {
+  __proto__: mixin,
+  madeIn() {
+    super.madeIn();
+  },
+};
 class Car {
   constructor(doors, engine, color) {
     this.doors = doors;
@@ -35,6 +47,8 @@ class SUV extends Car {
     // default properties, no need to pass in
     this.wheels = 4;
     this.ac = true;
+    // assign mixin
+    Object.assign(this, carMixin);
   }
   get getBrand() {
     return this._brand;
@@ -51,3 +65,6 @@ console.log(suv);
 console.log(suv.carStats());
 suv.setBrand = 'mazda';
 console.log(suv.getBrand);
+console.log(suv.madeIn());
+
+// mixs-ins and usage
